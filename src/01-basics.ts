@@ -12,7 +12,6 @@ const friend2 = {
   age: 31,
 };
 
-export const friends = [friend1, friend2];
 
 //   -------------------
 const colleague1 = {
@@ -41,7 +40,10 @@ const colleague3 = {
     extension: 125,
   },
 };
-export const colleagues : ColleagueHistory = {
+
+export const friends = [friend1, friend2];
+
+export const colleagues = {
   current: [colleague1, colleague2, colleague3],
   former: [],
 };
