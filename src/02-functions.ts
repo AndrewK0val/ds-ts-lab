@@ -1,5 +1,5 @@
 import { friends, colleagues } from "./01-basics";
-import { Friend, Colleague } from "./myTypes";
+import { Friend, Colleague, EmailContact } from "./myTypes";
 
 function older(f: Friend) : string {
     f.age += 1
@@ -19,7 +19,7 @@ function allOlder(f: Friend[]) : string {
 }
 
 // Find the colleague with the highest extension number.
-function highestExtension(cs: Colleague[]): Colleague {
+function highestExtension(cs: Colleague[]){
     const result = cs.sort(
       (c1, c2) => c1.contact.extension - c2.contact.extension
     );
@@ -48,5 +48,26 @@ function highestExtension(cs: Colleague[]): Colleague {
   addColleague(colleagues.current, "Sheild O Connell", "HR", "soc@here.com");
   console.log(colleagues.current.filter((c) => c.name === "Sheild O Connell"));
 
+  function sortColleagues ( colleagues: Colleague[], sorter: (c1: Colleague, c2: Colleague) => number) : EmailContact[] {
+      const sorted = colleagues.sort(sorter);
+      const result: EmailContact[] = sorted.map((ce) => ({name: ce.name, email: ce.contact.email}))
+      return result
+  }
+  console.log(sortColleagues(colleagues.current, (a, b) => a.contact.extension - b.contact.extension))
+  console.log(sortColleagues(colleagues.current, (a, b) => a.name.length - b.name.length))
 
+
+  // You are required to write a function called ‘findFriends’
+  // that searches an array of friends for those that satisfy a criterion.
+  //  The criterion is specified as a callback. For example,
+  //  consider these two invocations of the function:
+
+console.log(findFriends(friends, (friend) => friend.name.startsWith('Pa')));
+console.log(findFriends(friends, (friend) => friend.age < 35));
+
+function findFriends (friends: Friend[], finder: (f: Friend) => any) : Friend[] {
+  const found = friends.filter(finder);
+  const result: Friend[] = found.map((friend) => ({name: friend.name, phone: friend.phone, age: friend.age}))
+  return result
+}
 
