@@ -3,12 +3,14 @@ import { Friend, Colleague, ColleagueHistory } from "./myTypes";
 const friend1 = {
   name: "Paul Fleming",
   phone: "087-12345",
-  age: 25,
+  dob: new Date(1998-11-20),
+  age: 25
 };
 
 const friend2 = {
   name: "Jane Costello",
   phone: "086--12345",
+  interests: ['Music', 'Sport'],
   age: 31,
 };
 
@@ -47,4 +49,5 @@ export const colleagues = {
   current: [colleague1, colleague2, colleague3],
   former: [],
 };
+
 

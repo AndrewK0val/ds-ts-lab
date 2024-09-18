@@ -6,7 +6,7 @@ function older(f: Friend) : string {
     return `${f.name} is now ${f.age}`
 }
 
-console.log(allOlder(friends))
+// console.log(allOlder(friends))
 
 
 function allOlder(f: Friend[]) : string {
@@ -25,7 +25,7 @@ function highestExtension(cs: Colleague[]){
     );
     return result[cs.length - 1];
   }
-  console.log(highestExtension(colleagues.current));
+  // console.log(highestExtension(colleagues.current));
 
 //   You are required to write a function called ‘addColleague’ that
 //   adds a colleague to an array, and setting their extensions number
@@ -46,15 +46,21 @@ function highestExtension(cs: Colleague[]){
 
 
   addColleague(colleagues.current, "Sheild O Connell", "HR", "soc@here.com");
-  console.log(colleagues.current.filter((c) => c.name === "Sheild O Connell"));
+  // console.log(colleagues.current.filter((c) => c.name === "Sheild O Connell"));
 
-  function sortColleagues ( colleagues: Colleague[], sorter: (c1: Colleague, c2: Colleague) => number) : EmailContact[] {
+  function sortColleagues ( colleagues: Colleague[], sorter: (c1: Colleague, c2: Colleague) => number, max? : number ) : EmailContact[] {
+      let end = colleagues.length 
+      if (max !== undefined) {
+        end = max < 2 ? 1 : max 
+      }
       const sorted = colleagues.sort(sorter);
-      const result: EmailContact[] = sorted.map((ce) => ({name: ce.name, email: ce.contact.email}))
-      return result
+      const fullResult: EmailContact[] = sorted.map((ce) => ({name: ce.name, email: ce.contact.email}))
+      return fullResult.slice(0,end)
   }
-  console.log(sortColleagues(colleagues.current, (a, b) => a.contact.extension - b.contact.extension))
-  console.log(sortColleagues(colleagues.current, (a, b) => a.name.length - b.name.length))
+  console.log(sortColleagues(colleagues.current, ((a, b) => a.contact.extension - b.contact.extension), 3))
+  console.log(sortColleagues(colleagues.current, ((a, b) => a.name.length - b.name.length), 1) )
+  console.log(sortColleagues(colleagues.current, (a, b) => (a.name.length - b.name.length)))
+
 
 
   // You are required to write a function called ‘findFriends’
@@ -62,8 +68,8 @@ function highestExtension(cs: Colleague[]){
   //  The criterion is specified as a callback. For example,
   //  consider these two invocations of the function:
 
-console.log(findFriends(friends, (friend) => friend.name.startsWith('Pa')));
-console.log(findFriends(friends, (friend) => friend.age < 35));
+// console.log(findFriends(friends, (friend) => friend.name.startsWith('Pa')));
+// console.log(findFriends(friends, (friend) => friend.age < 35));
 
 function findFriends (friends: Friend[], finder: (f: Friend) => any) : Friend[] {
   const found = friends.filter(finder);
