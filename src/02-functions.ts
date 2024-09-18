@@ -77,3 +77,21 @@ function findFriends (friends: Friend[], finder: (f: Friend) => any) : Friend[] 
   return result
 }
 
+
+
+// Recall we added an optional property called ‘interests’ to the Friend data type.
+// You are required to write a function that adds an interest to a friend’s array of
+//  interests and returns the updated interests array (of strings).
+//  A typical invocation of the function might be:
+
+console.log(addInterest(friends[0], 'Politics'))
+
+
+
+function addInterest(friend: Friend, interest: string) : Friend {
+  if (!friend.interests) {
+    friend.interests = []
+  }
+  friend.interests.push(interest)
+  return friend
+}
